@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link href="https://fullcalendar.io/releases/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet">
+    <!--link href="./agenda-views_files/fullcalendar.print.min.css" rel="stylesheet" media="print"-->
+    <script src="https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js"></script>
+    <script src="https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/jquery.min.js"></script>
+    <script src="https://fullcalendar.io/releases/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+    <script>
+        var events = [{
+            "_id": "_fc11",
+            "allDay": true,
+            "title": "german class",
+            "start": "2018-03-21",
+            "end": null
+        }, {
+            "_id": "_fc25",
+            "allDay": true,
+            "title": "CV",
+            "start": "2018-03-22",
+            "end": null
+        }, {
+            "_id": "_fc51",
+            "allDay": true,
+            "title": "MongoDB + NodeJS Task",
+            "start": "2018-03-22",
+            "end": null
+        }, {
+            "_id": "_fc65",
+            "allDay": true,
+            "title": "MongoDB + NodeJS Task",
+            "start": "2018-03-23",
+            "end": null
+        }, {
+            "_id": "_fc79",
+            "allDay": true,
+            "title": "Running",
+            "start": "2018-03-24",
+            "end": null
+        }, {
+            "_id": "_fc97",
+            "allDay": true,
+            "title": "Dance Class",
+            "start": "2018-03-24",
+            "end": null
+        }, {
+            "_id": "_fc103",
+            "allDay": true,
+            "title": "10min Exercise App",
+            "start": "2018-03-27",
+            "end": null
+        }, {
+            "_id": "_fc109",
+            "allDay": true,
+            "title": "german class",
+            "start": "2018-03-26",
+            "end": null
+        }, {
+            "_id": "_fc125",
+            "allDay": true,
+            "title": "german class",
+            "start": "2018-03-28",
+            "end": null
+        }, {
+            "_id": "_fc137",
+            "allDay": true,
+            "title": "10min Exercise App",
+            "start": "2018-03-29",
+            "end": null
+        }, {
+            "_id": "_fc151",
+            "allDay": true,
+            "title": "10min Exercise App",
+            "start": "2018-03-30",
+            "end": null
+        }, {
+            "_id": "_fc167",
+            "allDay": true,
+            "title": "10min Exercise App",
+            "start": "2018-03-31",
+            "end": null
+        }, {
+            "_id": "_fc185",
+            "allDay": true,
+            "title": "10min Exercise App",
+            "start": "2018-03-22",
+            "end": null
+        }, {
+            "_id": "_fc207",
+            "allDay": true,
+            "title": "10min Exercise App",
+            "start": "2018-03-23",
+            "end": null
+        }, {
+            "_id": "_fc221",
+            "allDay": true,
+            "title": "10min Exercise App",
+            "start": "2018-03-25",
+            "end": null
+        }, {
+            "_id": "_fc243",
+            "allDay": true,
+            "title": "Salad",
+            "start": "2018-03-26",
+            "end": null
+        }, {
+            "_id": "_fc255",
+            "allDay": true,
+            "title": "Salad",
+            "start": "2018-03-28",
+            "end": null
+        }, {
+            "_id": "_fc257",
+            "allDay": true,
+            "title": "Santula",
+            "start": "2018-03-25",
+            "end": null
+        }];
+
+        var eventList = ["Cooking", "german class", "10min Exercise App", "CV", "MongoDB + NodeJS Task", "Running", "Dance Class", "Salad", "Santula", "Pasta", "Eat Fruits"];
+
+
+        function addEvent(title, start, end) {
+            events.push({
+                title: title,
+                start: start,
+                end: end
+            });
+        }
+        var calObj;
+
+        /* function refreshCalendar() {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: true,
+                droppable: true, // this allows things to be dropped onto the calendar
+                drop: function() {
+                    // is the "remove after drop" checkbox checked?
+                    if ($('#drop-remove').is(':checked')) {
+                        // if so, remove the element from the "Draggable Events" list
+                        $(this).remove();
+                    }
+                }
+            });
+        }
+
+        function init() {
+            refreshCalendar();
+            $('#external-events .fc-event').each(function() {
+
+                // store data so the calendar knows to render an event upon drop
+                $(this).data('event', {
+                    title: $.trim($(this).text()), // use the element's text as the event title
+                    stick: true // maintain when user navigates (see docs on the renderEvent method)
+                });
+
+                // make the event draggable using jQuery UI
+                $(this).draggable({
+                    zIndex: 999,
+                    revert: true, // will cause the event to go back to its
+                    revertDuration: 0 //  original position after the drag
+                });
+
+            });
+        } */
+        $(function() {
+
+            // initialize the external events
+            // -----------------------------------------------------------------
+
+            initTODO();
+
+            // initialize the calendar
+            // -----------------------------------------------------------------
+
+            calObj = $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: true,
+                events: events,
+                droppable: true, // this allows things to be dropped onto the calendar
+                drop: function() {
+                    // is the "remove after drop" checkbox checked?
+                    if ($('#drop-remove').is(':checked')) {
+                        // if so, remove the element from the "Draggable Events" list
+                        $(this).remove();
+                    }
+                }
+            });
+
+            populateEvents();
+        });
+
+        function initTODO() {
+            $('#eventList .fc-event').each(function() {
+
+                // store data so the calendar knows to render an event upon drop
+                $(this).data('event', {
+                    title: $.trim($(this).text()), // use the element's text as the event title
+                    stick: true // maintain when user navigates (see docs on the renderEvent method)
+                });
+
+                // make the event draggable using jQuery UI
+                $(this).draggable({
+                    zIndex: 999,
+                    revert: true, // will cause the event to go back to its
+                    revertDuration: 0 //  original position after the drag
+                });
+
+            });
+        }
+
+        function addEvent(eventLabel) {
+            var innerDiv = document.createElement('div');
+            innerDiv.setAttribute('class', 'fc-event');
+            innerDiv.innerHTML = eventLabel || document.getElementById('addevent').value;
+            document.getElementById('eventList').appendChild(innerDiv);
+            initTODO();
+            document.getElementById('addevent').value = "";
+            document.getElementById('addevent').focus();
+        }
+
+        function populateEvents() {
+            eventList.forEach(function(val, idx) {
+                addEvent(val);
+            });
+        }
+
+        function addnewevent(e) {
+            if (!e) {
+                var e = window.event;
+            }
+            //e.preventDefault(); // sometimes useful
+
+            // Enter is pressed
+            if (e.keyCode == 13) {
+                addEvent();
+                return false;
+            }
+            return true;
+        }
+
+        function getFormattedTime() {
+            var today = new Date();
+            var y = today.getFullYear();
+            var m = ('0' + parseInt(today.getMonth() + 1)).slice(-2);
+            var d = ('0' + today.getDate()).slice(-2);
+            var h = ('0' + today.getHours()).slice(-2);
+            var min = ('0' + today.getMinutes()).slice(-2);
+            var s = ('0' + today.getSeconds()).slice(-2);
+
+            return y + "-" + m + "-" + d + "T" + h + "-" + min + "-" + s;
+        }
+
+        function dumpData() {
+            var data = {};
+            //data['events'] = [];
+            tempevents = JSON.stringify(calObj.fullCalendar('clientEvents'), function(key, value) {
+                if (typeof value === 'object' && value !== null) {
+                    /*if (cache.indexOf(value) !== -1) {
+                        // Circular reference found, discard key
+                        return;
+                    }
+                    // Store value in our collection
+                    cache.push(value);*/
+                }
+                if (key === 'source' || key === 'className') {
+                    return;
+                }
+                return value;
+            });
+            data['events'] = JSON.parse(tempevents);
+            data['labels'] = [];
+            var list = document.getElementById('eventList');
+            Array.prototype.slice.call(list.children).forEach(function(val, idx) {
+                data['labels'].push(val.innerHTML);
+            });
+            console.log(data);
+            backup(data);
+        }
+
+        function backup(data) {
+            download(JSON.stringify(data), 'backup_events' + '_' + getFormattedTime() + ".json", 'application/json');
+        }
+
+        function download(text, name, type) {
+            var a = document.createElement("a");
+            var file = new Blob([text], {
+                type: type
+            });
+            a.href = URL.createObjectURL(file);
+            a.download = name;
+            a.click();
+        }
+    </script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+            font-size: 14px;
+        }
+        
+        #external-events {
+            position: fixed;
+            z-index: 2;
+            top: 20px;
+            left: 20px;
+            width: 150px;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            background: #eee;
+        }
+        
+        #external-events .fc-event {
+            margin: 1em 0;
+            cursor: move;
+        }
+        
+        #calendar-container {
+            position: relative;
+            z-index: 1;
+            margin-left: 200px;
+        }
+        
+        #calendar {
+            max-width: 900px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body cz-shortcut-listen="true" class="">
+
+    <div id='external-events'>
+
+        <p>
+            <strong>TODO:</strong>
+        </p>
+        <div id='eventList'>
+            <div class='fc-event'>Cooking</div>
+        </div>
+        <p>
+            <input type='checkbox' id='drop-remove' />
+            <label for='drop-remove'>remove after drop</label>
+        </p>
+        <p>
+            <label for='addevent'>Add an item TODO:</label>
+            <input type="text" id="addevent" maxlength="25" style="width:110px" onkeydown="addnewevent()">
+            <input type='button' id='addeventNow' onclick="addEvent()" value='Go' />
+        </p>
+
+    </div>
+
+
+
+    <div id='calendar-container'>
+        <div id='calendar'></div>
+    </div>
+
+
+
+</body>
+
+</html>
